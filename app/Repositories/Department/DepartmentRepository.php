@@ -12,8 +12,6 @@ class DepartmentRepository
         return Department::create([
             'code' => $data['code'],
             'name' => $data['name'],
-            'created_by' => $data['created_by'],
-            'updated_by' => $data['updated_by']
         ]);
     }
 

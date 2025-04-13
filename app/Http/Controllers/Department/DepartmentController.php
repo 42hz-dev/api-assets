@@ -25,7 +25,7 @@ class DepartmentController extends Controller
         return response()->json([
             'message' => '부서 생성 되었습니다.',
             'department' => $department
-        ]);
+        ], 201);
     }
 
     public function update(UpdateDepartmentRequest $request, Department $department):? JsonResponse
@@ -36,7 +36,7 @@ class DepartmentController extends Controller
         return response()->json([
             'message' => '부서 수정 되었습니다.',
             'department' => $department
-        ]);
+        ], 201);
     }
 
     public function delete(Department $department):? JsonResponse
@@ -46,20 +46,20 @@ class DepartmentController extends Controller
         return response()->json([
             'message' => '부서 삭제 되었습니다.',
             'department' => $department
-        ]);
+        ], 201);
     }
 
     public function index(): ?JsonResponse
     {
         return response()->json([
             'departments' => $this->departmentService->findAll()
-        ]);
+        ], 201);
     }
 
     public function show(Department $department): ?JsonResponse
     {
         return response()->json([
             'departments' => $this->departmentService->findById($department->id)
-        ]);
+        ], 201);
     }
 }

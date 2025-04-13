@@ -24,7 +24,7 @@ class DepartmentService
 
     public function update(array $data, Department $department): ?Department
     {
-        $data['code'] = strtoupper(trim($data['code']));
+        $data['code'] = isset($data['code']) ? strtoupper(trim($data['code'])) : null;
         $updateData = array_filter($data, fn($value) => !is_null($value));
 
         return $this->departmentRepository->update($updateData, $department);

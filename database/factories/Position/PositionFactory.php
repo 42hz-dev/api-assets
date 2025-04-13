@@ -1,13 +1,14 @@
 <?php
 
-namespace Database\Factories\Department;
+namespace Database\Factories\Position;
 
+use App\Models\Position\Position;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Model>
+ * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Position\Position>
  */
-class DepartmentFactory extends Factory
+class PositionFactory extends Factory
 {
     /**
      * Define the model's default state.
@@ -18,7 +19,7 @@ class DepartmentFactory extends Factory
     {
         return [
             'code' => strtoupper($this->faker->unique()->lexify('A???')),
-            'name' => substr($this->faker->unique()->word(), 0, 30),
+            'name' => substr($this->faker->unique()->jobTitle(), 0, 30),
             'created_by' => 'admin',
             'updated_by' => 'admin'
         ];
