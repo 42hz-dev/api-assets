@@ -24,6 +24,7 @@ class CreatePositionRequest extends FormRequest
         return [
             'code' => 'required|string|max:15|unique:positions,code',
             'name' => 'required|string|max:30|unique:positions,name',
+            'department_id' => 'required|exists:departments,id'
         ];
     }
 }

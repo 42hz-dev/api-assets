@@ -9,10 +9,13 @@ class PositionRepository
 {
     public function create(array $data): ?Position
     {
-        return Position::create([
-            'code' => $data['code'],
-            'name' => $data['name'],
-        ]);
+        $position = new Position();
+        $position->code = $data['code'];
+        $position->name = $data['name'];
+
+        $position->save();
+
+        return $position;
     }
 
     public function update(array $data, Position $position): ?Position
@@ -29,11 +32,11 @@ class PositionRepository
 
     public function findAll(): ?Collection
     {
-        return Position::all();
+        return Position::with(['department', 'employees'])->get();
     }
 
     public function findById(int $id): ?Position
     {
-        return Position::findOrFail($id);
+        return Position::with(['department', 'employees'])->findOrFail($id);
     }
 }

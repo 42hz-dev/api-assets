@@ -1,23 +1,30 @@
 <?php
 
-namespace App\Models\Position;
+namespace App\Models\Employee;
 
 use App\Models\Department\Department;
-use App\Models\Employee\Employee;
+use App\Models\Position\Position;
 use App\Traits\Blameable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use Illuminate\Database\Eloquent\Relations\HasMany;
 
-class Position extends Model
+class Employee extends Model
 {
     use Blameable, HasFactory;
 
+    protected $table = 'employees';
+
     protected $fillable = [
-        'code',
         'name',
-        'is_active',
+        'phone',
+        'emergency_phone',
+        'email',
+        'postal_code',
+        'address_line1',
+        'address_line2',
+        'gender',
+        'is_status',
         'created_by',
         'updated_by'
     ];
@@ -27,8 +34,8 @@ class Position extends Model
         return $this->belongsTo(Department::class);
     }
 
-    public function employees(): HasMany
+    public function position(): BelongsTo
     {
-        return $this->hasMany(Employee::class);
+        return $this->belongsTo(Position::class);
     }
 }

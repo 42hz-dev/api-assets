@@ -2,6 +2,10 @@
 
 namespace App\Providers;
 
+use App\Models\Employee\Employee;
+use App\Models\Position\Position;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Query\Builder;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -19,6 +23,6 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        //
+        Model::shouldBeStrict(!$this->app->isProduction());
     }
 }

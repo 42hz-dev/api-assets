@@ -9,10 +9,13 @@ class DepartmentRepository
 {
     public function create(array $data): ?Department
     {
-        return Department::create([
-            'code' => $data['code'],
-            'name' => $data['name'],
-        ]);
+        $department = new Department();
+        $department->code = $data['code'];
+        $department->name = $data['name'];
+
+        $department->save();
+
+        return $department;
     }
 
     public function update(array $data, Department $department): ?Department
@@ -29,11 +32,11 @@ class DepartmentRepository
 
     public function findAll():? Collection
     {
-        return Department::all();
+        return Department::with(['positions', 'employees'])->get();
     }
 
     public function findById(int $id):? Department
     {
-        return Department::findOrFail($id);
+        return Department::with(['positions', 'employees'])->findOrFail($id);
     }
 }

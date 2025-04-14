@@ -24,6 +24,7 @@ class UpdatePositionRequest extends FormRequest
         return [
             'code' => 'string|max:15|unique:positions,code',
             'name' => 'string|max:30|unique:positions,name',
+            'department_id' => 'exists:departments,id'
         ];
     }
 }
