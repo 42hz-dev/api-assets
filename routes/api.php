@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\Brand\BrandController;
 use App\Http\Controllers\Department\DepartmentController;
 use App\Http\Controllers\Employee\EmployeeController;
 use App\Http\Controllers\Position\PositionController;
@@ -42,4 +43,15 @@ Route::prefix('employee')->middleware('auth:sanctum')->group(function () {
 Route::prefix('employee')->group(function () {
     Route::get('/', [EmployeeController::class, 'index']);
     Route::get('/{employee}', [EmployeeController::class, 'show']);
+});
+
+// 브랜드
+Route::prefix('brand')->middleware('auth:sanctum')->group(function () {
+    Route::post('/', [BrandController::class, 'create']);
+    Route::put('/{brand}', [BrandController::class, 'update']);
+    Route::delete('/{brand}', [BrandController::class, 'delete']);
+});
+Route::prefix('brand')->group(function () {
+    Route::get('/', [BrandController::class, 'index']);
+    Route::get('/{brand}', [BrandController::class, 'show']);
 });
